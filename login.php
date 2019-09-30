@@ -6,13 +6,17 @@ include_once('inc/common.php');
     <head>
         <title>FindTheFairway</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
+    <?php
+        printActivePage();
+    ?>
+
     </head>
     <body>
 <?php
         printHeader();
 ?>
 
-        <div id="content" align="center">
+        <div id="content" align="center" class="loginContent">
             <h2 align="center">Login</h2>
             <form id="login">
                 <label for="txtUsername">Username:</label>

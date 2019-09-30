@@ -6,6 +6,9 @@ include_once('inc/common.php');
     <head>
         <title>FindTheFairway</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
+<?php
+        printActivePage();
+?>
     </head>
     <body>
 <?php
