@@ -111,6 +111,11 @@ li:hover {
     margin: auto;
 }
 
+.notLoggedIn li{
+    float: left;
+    width: 50%;
+}
+
 #content {
     padding: 15px 25px;
 }
