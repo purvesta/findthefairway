@@ -19,21 +19,15 @@ include_once('inc/common.php');
 
         <div id="content">
             <p id="info">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt metus at justo gravida accumsan.
-                Vestibulum suscipit lobortis elit, at tincidunt odio iaculis ut. Morbi in consequat sapien, eget elementum risus.
-                In accumsan sit amet mi ut condimentum. Aliquam erat volutpat. Nulla nec est ac arcu suscipit fermentum.
-                Integer luctus fermentum enim, nec egestas est pellentesque eget.
+                Welcome to FindTheFairway!!<br>
 
-                Donec tincidunt ante eget ex semper, eu faucibus enim rhoncus. Quisque vulputate interdum turpis at ultrices.
-                Etiam vitae lorem dapibus, fermentum nulla sit amet, aliquet nibh.
-                Cras enim sem, tempor eget sagittis viverra, maximus sit amet dolor.
-                Curabitur pharetra metus diam. Quisque vulputate turpis commodo velit convallis, eu dapibus massa gravida.
-                Donec mollis leo in lorem fringilla mattis. Praesent eget libero malesuada, vehicula magna vel, ultricies urna.
-                Curabitur consectetur condimentum lorem, in vestibulum orci sollicitudin vitae.
-                Morbi libero nunc, malesuada vel sapien sit amet, tempor dictum elit.
-                Maecenas laoreet mollis velit at auctor. Proin mollis lorem id risus euismod, eu cursus orci accumsan.
-                Suspendisse varius enim tellus, non blandit augue porta at. Mauris tempor iaculis est, in sollicitudin mi tincidunt vel.
-                Quisque aliquet lorem a urna ornare commodo. Sed facilisis vestibulum mi et finibus.
+                This website is dedicated to getting you tee times at your favorite courses around the world, all in one place.
+                We (will) use golf course APIs to get available tee time information as well as put you down in the books for
+                your next round out at your favorite course.
+
+                Get started by creating an account and having a look at the available golf courses we currently have.
+
+                You'll be on the links shooting your lowest round before you know it!
             </p>
 
             <div id="get-started-button" align="center">

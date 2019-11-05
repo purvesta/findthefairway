@@ -97,7 +97,7 @@ li:hover {
 }
 
 .manageContent {
-    width: 15%;
+    width: 65%;
     margin: auto;
 }
 
@@ -171,4 +171,20 @@ li:hover {
 
 #date-label {
     width: 22%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

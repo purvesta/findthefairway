@@ -1,15 +1,18 @@
 <?php
-require_once('inc/Validation.php');
 require_once('inc/common.php');
+require_once('inc/Validation.php');
+
 
 if(array_key_exists('a', $_GET) && ($_GET['a'] == 'login')){
     // Do login validation
     $validation = new Validation();
 
     if(!($validation->validate($_POST['txtLUsername'], 'username'))){
+        $_SESSION['err'] = 'Invalid First Name entry.';
         header('Location: login.php');
     }
     if(!($validation->validate($_POST['txtLPassword'], 'password'))){
+        $_SESSION['err'] = 'Invalid Last Name entry.';
         header('Location: login.php');
     }
 
@@ -17,6 +20,7 @@ if(array_key_exists('a', $_GET) && ($_GET['a'] == 'login')){
         header('Location: index.php');
     }
     else{
+        $_SESSION['err'] = 'Username or Password is incorrect.';
         header('Location: login.php');
     }
 
@@ -26,25 +30,39 @@ else if(array_key_exists('a', $_GET) && ($_GET['a'] == 'register')){
     $validation = new Validation();
 
     if(!($validation->validate($_POST['txtFirstname'], 'firstName'))){
+        $_SESSION['err'] = 'Invalid First Name entry.';
         header('Location: login.php');
+        die();
     }
     if(!($validation->validate($_POST['txtLastname'], 'lastName'))){
+        $_SESSION['err'] = 'Invalid Last Name entry.';
         header('Location: login.php');
+        die();
     }
     if(!($validation->validate($_POST['txtPhonenumber'], 'phone'))){
+        $_SESSION['err'] = 'Invalid Phone # entry.';
         header('Location: login.php');
+        die();
     }
     if(!($validation->validate($_POST['txtUsername'], 'username'))){
+        $_SESSION['err'] = 'Invalid Username entry.';
         header('Location: login.php');
+        die();
     }
     if(!($validation->validate($_POST['txtPassword'], 'password'))){
+        $_SESSION['err'] = 'Invalid Password entry.';
         header('Location: login.php');
+        die();
     }
     if(!($validation->validate($_POST['txtReEnterPass'], 'password'))){
+        $_SESSION['err'] = 'Invalid Re-enter Password entry.';
         header('Location: login.php');
+        die();
     }
     if($_POST['txtPassword'] != $_POST['txtReEnterPass']){
+        $_SESSION['err'] = 'Passwords did not match.';
         header('Location: login.php');
+        die();
     }
 
     createAccount(
@@ -57,18 +75,23 @@ else if(array_key_exists('a', $_GET) && ($_GET['a'] == 'register')){
 
     if(authenticate($_POST['txtUsername'], $_POST['txtPassword'])){
         header('Location: index.php');
+        die();
     }
     else{
+        $_SESSION['err'] = 'Account creation failed.';
         header('Location: login.php');
+        die();
     }
 
 }
-else if(array_key_exists('a', $_GET) && ($_GET['a'] == 'logout')){
+elseif(array_key_exists('a', $_GET) && ($_GET['a'] == 'logout')){
     $_SESSION['loggedIn'] = false;
     header('Location: index.php');
+    die();
 }
 else{
     header('Location: login.php');
+    die();
 }
 
 
@@ -82,11 +105,10 @@ function createAccount($fname, $lname, $phone, $uname, $pass){
 
     $fname = $conn->real_escape_string($fname);
     $lname = $conn->real_escape_string($lname);
-    $phone = $conn->real_escape_string($phone);
+    $phone = $conn->real_escape_string(preg_replace("/\D/", "", $phone));
     $uname = $conn->real_escape_string($uname);
     $hash_pass = md5($pass);
 
-//die();
     $stmt->bind_param('sssss', $fname, $lname, $phone, $uname, $hash_pass);
 
     $stmt->execute();
@@ -116,10 +138,12 @@ function authenticate($uname, $pass){
 
         $assoc = $result->fetch_assoc();
 
+        $id = $assoc['id'];
         $fname = ucfirst($assoc['fname']);
         $lname = ucfirst($assoc['lname']);
         $phone = $assoc['phone'];
 
+        $_SESSION['id'] = $id;
         $_SESSION['fname'] = $fname;
         $_SESSION['lname'] = $lname;
         $_SESSION['phone'] = $phone;

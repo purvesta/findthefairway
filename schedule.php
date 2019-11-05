@@ -1,6 +1,29 @@
 <?php
 include_once('inc/common.php');
 
+function fetchCourses(){
+    $conn = new mysqli('localhost', 'root', 'root', 'ftf');
+    if ($conn->connect_errno) {
+        echo 'Failed to connect to MySQL: ' . $conn->connect_error;
+    }
+
+    $result = $conn->query('SELECT name FROM courses');
+
+    if ($result->num_rows > 0) {
+
+        $conn->close();
+
+        return $result;
+
+    } else {
+
+        $_SESSION['err'] = 'Could not fetch courses.';
+        $conn->close();
+
+        return null;
+    }
+}
+
 if(($_SESSION['loggedIn'])) {
     ?>
     <!DOCTYPE html>
@@ -33,10 +56,18 @@ if(($_SESSION['loggedIn'])) {
         <form id="schedule">
             <div id="courses" class="courses">
                 <select id="course-select">
-                    <option value="course1">Course 1</option>
-                    <option value="course2">Course 2</option>
-                    <option value="course3">Course 3</option>
-                    <option value="course4">Course 4</option>
+                    <?php
+                        $result = fetchCourses();
+
+                        if($result != null){
+                            $i = 0;
+                            while($row = $result->fetch_assoc()){
+                                echo "<option value=\"c$i\">".$row['name'].'</option>';
+                                $i++;
+                            }
+                            $result->close();
+                        }
+                    ?>
                 </select>
             </div>
             <div align="center">
@@ -58,6 +89,8 @@ if(($_SESSION['loggedIn'])) {
     </body>
     </html>
     <?php
+    echo $_SESSION['err'];
+    $_SESSION['err'] = '';
 }
 else{
     header('Location: login.php');

@@ -21,15 +21,15 @@ if(($_SESSION['loggedIn'])) {
 
     <div id="content" align="center" class="accountContent">
         <h2 align="center">Account</h2>
-        <form id="account">
+        <form id="account" method="post" action="accountAction.php?a=update">
             <label for="txtFirstname">First Name:</label>
-            <input type="text" name="txtFirstname" placeholder="First Name"/>
+            <input type="text" name="txtFirstname" placeholder="First Name" value="<?php echo $_SESSION['fname']; ?>"/>
             <br>
             <label for="txtLastname">Last Name:</label>
-            <input type="text" name="txtLastname" placeholder="Last Name"/>
+            <input type="text" name="txtLastname" placeholder="Last Name" value="<?php echo $_SESSION['lname']; ?>"/>
             <br>
             <label for="txtPhonenumber">Phone #:</label>
-            <input type="text" name="txtPhonenumber" placeholder="Phone #"/>
+            <input type="text" name="txtPhonenumber" placeholder="Phone #" value="<?php echo $_SESSION['phone']; ?>"/>
             <br>
             <input type="submit" id="account-submit" class="loginButton" name="submit" value="Update">
         </form>
@@ -40,6 +40,8 @@ if(($_SESSION['loggedIn'])) {
     </body>
     </html>
     <?php
+    echo $_SESSION['err'];
+    $_SESSION['err'] = '';
 }
 else{
     header('Location: login.php');

@@ -23,31 +23,35 @@ class Validation{
             $this->returnVal = $this -> phone($value);
         }
 
-        return $this -> returnVal;
+        return ($this -> returnVal);
     }
 
     function firstName($value){
-        if(preg_match('/(\S\w+)/', $value)){
+        if(preg_match('/(\w+)/', $value) === 1){
             return true;
         }
+        return false;
     }
     
     function lastName($value){
-        if(preg_match('/(\S\w+)/', $value)){
+        if(preg_match('/(\w+)/', $value) === 1){
             return true;
         }
+        return false;
     }
     
     function username($value){
-        if(preg_match('/(\S[0-9A-Za-z]{0,255}\w+)/', $value)){
+        if(preg_match('/(\S[0-9A-Za-z]{0,255}\w+)/', $value) === 1){
             return true;
         }
+        return false;
     }
     
     function password($value){
-        if(preg_match('/(\S[0-9A-Za-z]{0,255}\w+)/', $value)){
+        if(preg_match('/(\S[0-9A-Za-z]{0,255}\w+)/', $value) === 1){
             return true;
         }
+        return false;
     }
 
     function phone($value){
@@ -55,6 +59,7 @@ class Validation{
         if(is_numeric($number) && (strlen($number) == 10 || strlen($number) == 11)){
             return true;
         }
+        return false;
     }
 
 }

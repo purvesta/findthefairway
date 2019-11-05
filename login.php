@@ -67,6 +67,8 @@ if(!($_SESSION['loggedIn'])) {
     </body>
     </html>
     <?php
+    echo $_SESSION['err'];
+    $_SESSION['err'] = '';
 }
 else{
     echo 'You\'re already logged in!';

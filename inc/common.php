@@ -37,9 +37,6 @@ function printHeader() {
             <nav>
                 <ul class="notLoggedIn">
                     <li><a href="index.php">Home</a></li>
-                    <!--<li><a href="schedule.php">Schedule Tee Time</a></li>-->
-                    <!--<li><a href="manage.php">Manage Tee Times</a></li>-->
-                    <!--<li><a href="account.php">Account Settings</a></li>-->
                     <li><a href="login.php">Login</a></li>
                 </ul>
             </nav>
