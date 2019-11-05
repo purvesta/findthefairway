@@ -2,7 +2,7 @@
 include_once('inc/common.php');
 
 function fetchCourses(){
-    $conn = new mysqli('localhost', 'root', 'root', 'ftf');
+    $conn = new mysqli('us-cdbr-iron-east-05.cleardb.net', 'bdedb0104703bc', 'fc12bbf3', 'heroku_b23ba24edddfeb3');
     if ($conn->connect_errno) {
         echo 'Failed to connect to MySQL: ' . $conn->connect_error;
     }
