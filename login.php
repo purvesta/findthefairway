@@ -4,16 +4,9 @@ if(!($_SESSION['loggedIn'])) {
     ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <title>FindTheFairway</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
-        <?php
-        printActivePage();
-        ?>
-
-    </head>
+<?php
+    printHead();
+?>
     <body>
     <?php
     printHeader();

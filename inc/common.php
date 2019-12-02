@@ -9,6 +9,22 @@ if (!isset($_SESSION['loggedIn'])) {
     $_SESSION['loggedIn'] = false;
 }
 
+function printHead() {
+    echo
+    '
+    <head>
+        <title>FindTheFairway</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    ' . printActivePage() . ' </head>';
+}
+
 
 function printHeader() {
     if (isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] == true)){

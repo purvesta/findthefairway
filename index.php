@@ -2,16 +2,9 @@
 include_once('inc/common.php');
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>FindTheFairway</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <?php
-        printActivePage();
+        printHead();
 ?>
-    </head>
     <body>
 <?php
         printHeader();
