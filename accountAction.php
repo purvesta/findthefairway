@@ -6,17 +6,17 @@ if(array_key_exists('a', $_GET) && ($_GET['a'] == 'update')){
     // Do login validation
     $validation = new Validation();
 
-    if(!($validation->validate($_POST['txtFirstname'], 'firstName'))){
+    if(!($validation->validate($_POST['txtFirstname'], 'txtFirstname'))){
         $_SESSION['err'] = 'Invalid First Name entry.';
         header('Location: account.php');
         die();
     }
-    if(!($validation->validate($_POST['txtLastname'], 'lastName'))){
+    if(!($validation->validate($_POST['txtLastname'], 'txtLastname'))){
         $_SESSION['err'] = 'Invalid Last Name entry.';
         header('Location: account.php');
         die();
     }
-    if(!($validation->validate($_POST['txtPhonenumber'], 'phone'))){
+    if(!($validation->validate($_POST['txtPhonenumber'], 'txtPhonenumber'))){
         $_SESSION['err'] = 'Invalid Phone # entry.';
         header('Location: account.php');
         die();
