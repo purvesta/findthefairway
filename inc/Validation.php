@@ -7,19 +7,19 @@ class Validation{
        
         $this->returnVal = false;
 
-        if($value != '' && $name == 'firstName'){
+        if($value != '' && $name == 'txtFirstname'){
             $this->returnVal = $this -> firstName($value);
         }
-        elseif($value != '' && $name == 'lastName'){
+        elseif($value != '' && $name == 'txtLastname'){
             $this->returnVal = $this -> lastName($value);
         }
-        elseif($value != '' && $name == 'username'){
+        elseif($value != '' && $name == 'txtUsername'){
             $this->returnVal = $this -> username($value);
         }
-        elseif($value != '' && $name == 'password'){
+        elseif($value != '' && $name == 'txtPassword'){
             $this->returnVal = $this -> password($value);
         }
-        elseif($value != '' && $name == 'phone'){
+        elseif($value != '' && $name == 'txtPhonenumber'){
             $this->returnVal = $this -> phone($value);
         }
 

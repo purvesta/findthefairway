@@ -7,11 +7,11 @@ if(array_key_exists('a', $_GET) && ($_GET['a'] == 'login')){
     // Do login validation
     $validation = new Validation();
 
-    if(!($validation->validate($_POST['txtLUsername'], 'username'))){
+    if(!($validation->validate($_POST['txtLUsername'], 'txtUsername'))){
         $_SESSION['err'] = 'Invalid First Name entry.';
         header('Location: login.php');
     }
-    if(!($validation->validate($_POST['txtLPassword'], 'password'))){
+    if(!($validation->validate($_POST['txtLPassword'], 'txtPassword'))){
         $_SESSION['err'] = 'Invalid Last Name entry.';
         header('Location: login.php');
     }
@@ -29,38 +29,44 @@ else if(array_key_exists('a', $_GET) && ($_GET['a'] == 'register')){
     // Do register validation
     $validation = new Validation();
 
-    if(!($validation->validate($_POST['txtFirstname'], 'firstName'))){
+    if(!($validation->validate($_POST['txtFirstname'], 'txtFirstname'))){
         $_SESSION['err'] = 'Invalid First Name entry.';
         header('Location: login.php');
         die();
     }
-    if(!($validation->validate($_POST['txtLastname'], 'lastName'))){
+    if(!($validation->validate($_POST['txtLastname'], 'txtLastname'))){
         $_SESSION['err'] = 'Invalid Last Name entry.';
         header('Location: login.php');
         die();
     }
-    if(!($validation->validate($_POST['txtPhonenumber'], 'phone'))){
+    if(!($validation->validate($_POST['txtPhonenumber'], 'txtPhonenumber'))){
         $_SESSION['err'] = 'Invalid Phone # entry.';
         header('Location: login.php');
         die();
     }
-    if(!($validation->validate($_POST['txtUsername'], 'username'))){
+    if(!($validation->validate($_POST['txtUsername'], 'txtUsername'))){
         $_SESSION['err'] = 'Invalid Username entry.';
         header('Location: login.php');
         die();
     }
-    if(!($validation->validate($_POST['txtPassword'], 'password'))){
+    if(!($validation->validate($_POST['txtPassword'], 'txtPassword'))){
         $_SESSION['err'] = 'Invalid Password entry.';
         header('Location: login.php');
         die();
     }
-    if(!($validation->validate($_POST['txtReEnterPass'], 'password'))){
+    if(!($validation->validate($_POST['txtReEnterPass'], 'txtPassword'))){
         $_SESSION['err'] = 'Invalid Re-enter Password entry.';
         header('Location: login.php');
         die();
     }
     if($_POST['txtPassword'] != $_POST['txtReEnterPass']){
         $_SESSION['err'] = 'Passwords did not match.';
+        header('Location: login.php');
+        die();
+    }
+
+    if(uname_exists($_POST['txtUsername'])){
+        $_SESSION['err'] = 'Account with this username already exists.';
         header('Location: login.php');
         die();
     }
@@ -92,6 +98,35 @@ elseif(array_key_exists('a', $_GET) && ($_GET['a'] == 'logout')){
 else{
     header('Location: login.php');
     die();
+}
+
+
+function uname_exists($uname){
+    $conn = new mysqli('us-cdbr-iron-east-05.cleardb.net', 'bdedb0104703bc', 'fc12bbf3', 'heroku_b23ba24edddfeb3');
+    if ($conn->connect_errno) {
+        echo 'Failed to connect to MySQL: ' . $conn->connect_error;
+    }
+
+    $stmt = $conn->prepare('SELECT * FROM users WHERE uname=?');
+
+    $uname = $conn->real_escape_string($uname);
+
+    $stmt->bind_param('s', $uname);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $stmt->close();
+        $conn->close();
+
+        return true;
+
+    } else {
+        $stmt->close();
+        $conn->close();
+
+        return false;
+    }
 }
 
 

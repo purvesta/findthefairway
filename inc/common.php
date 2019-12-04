@@ -32,7 +32,7 @@ function printHeader() {
         echo
         '
         <header style="white-space: nowrap;">
-            <h1 align="center">FindTheFairway</h1>
+            <h1 align="center" id="title">FindTheFairway</h1>
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
@@ -43,13 +43,18 @@ function printHeader() {
                 </ul>
             </nav>
         </header>
+        <script type="text/javascript">
+            $("html").mousemove(function( event ) {
+                document.getElementById("title").style.color = "rgb("+Math.floor(Math.random() * 255)+","+ Math.floor(Math.random() * 255)+","+ Math.floor(Math.random() * 255)+")";
+            });
+        </script> 
         ';
     }
     else {
         echo
         '
         <header style="white-space: nowrap;">
-            <h1 align="center">FindTheFairway</h1>
+            <h1 align="center" id="title">FindTheFairway</h1>
             <nav>
                 <ul class="notLoggedIn">
                     <li><a href="index.php">Home</a></li>
@@ -57,6 +62,11 @@ function printHeader() {
                 </ul>
             </nav>
         </header>
+        <script type="text/javascript">
+            $("html").mousemove(function( event ) {
+                document.getElementById("title").style.color = "rgb("+Math.floor(Math.random() * 255)+","+ Math.floor(Math.random() * 255)+","+ Math.floor(Math.random() * 255)+")";
+            });
+        </script> 
         ';
     }
 }
